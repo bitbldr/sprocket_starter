@@ -1,5 +1,5 @@
 # Sprocket Starter
-Companion documentation for [Sprocket](https://github.com/bitbldr/sprocket), a real-time server-side components library for Gleam.
+Companion starter repo for [Sprocket](https://github.com/bitbldr/sprocket), a real-time server-side components library for Gleam.
 
 ## Introduction
 

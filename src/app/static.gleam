@@ -1,4 +1,3 @@
-import gleam/io
 import gleam/http/response.{Response}
 import gleam/http/request.{Request}
 import gleam/http/service.{Service}

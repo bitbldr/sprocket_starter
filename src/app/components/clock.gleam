@@ -76,7 +76,7 @@ pub fn clock(ctx: Context, props: ClockProps) {
     WithDeps([dep(time), dep(time_unit)]),
   )
 
-  let current_time = format_time(time, "%y-%m-%d %I:%M:%S %p")
+  let current_time = format_unix_timestamp(time, time_unit)
 
   render(
     ctx,
@@ -87,5 +87,5 @@ pub fn clock(ctx: Context, props: ClockProps) {
   )
 }
 
-@external(erlang, "Elixir.FFIUtils", "format_time")
-pub fn format_time(a: a, b: String) -> String
+@external(erlang, "sprocket_starter_ffi", "format_unix_timestamp")
+pub fn format_unix_timestamp(a: Int, b: erlang.TimeUnit) -> String

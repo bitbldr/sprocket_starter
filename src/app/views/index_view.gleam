@@ -1,3 +1,4 @@
+import gleam/erlang
 import gleam/option.{None, Some}
 import sprocket/context.{Context}
 import sprocket/component.{component, render}
@@ -102,16 +103,16 @@ pub fn index_view(ctx: Context, props: IndexViewProps) {
                     ],
                   ),
                   p_text(
-                    [],
+                    [class("my-5 text-center")],
                     "Below are some example components to get you started. Components are rendered on the server and updates are patched into the DOM.",
                   ),
                   div(
-                    [class("mt-10 text-center")],
+                    [class("my-5 text-center")],
                     [
                       component(
                         clock,
                         ClockProps(
-                          label: Some("The current server time is: "),
+                          label: Some("The current system time is: "),
                           time_unit: None,
                         ),
                       ),

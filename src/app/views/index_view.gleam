@@ -2,13 +2,12 @@ import gleam/option.{None, Some}
 import sprocket/context.{Context}
 import sprocket/component.{component, render}
 import sprocket/html.{
-  body, div, h1, head, html, link, meta, p_text, script, text, title,
+  a, body, div, h1, head, html, link, meta, p, p_text, script, span, text, title,
 }
 import sprocket/html/attributes.{
   charset, class, content, crossorigin, href, integrity, lang, name,
   referrerpolicy, rel, src,
 }
-import app/components/header.{HeaderProps, MenuItem, header}
 import app/page_route.{PageRoute}
 import app/components/counter.{CounterProps, counter}
 import app/components/clock.{ClockProps, clock}
@@ -63,43 +62,77 @@ pub fn index_view(ctx: Context, props: IndexViewProps) {
             ],
             [
               div(
-                [],
-                [
-                  component(
-                    header,
-                    HeaderProps(menu_items: [
-                      MenuItem("Docs", "https://sprocket.live"),
-                    ]),
-                  ),
-                ],
-              ),
-              div(
                 [class("container mx-auto px-4")],
                 [
                   h1(
-                    [class("text-3xl my-10 text-center")],
-                    [text("Hello from Sprocket!")],
+                    [class("text-3xl mt-10 text-center")],
+                    [
+                      text("Hello from"),
+                      span(
+                        [class("italic bold ml-2")],
+                        [text("⚙️Sprocket")],
+                      ),
+                    ],
                   ),
                   div(
+                    [class("text-gray-500 text-center mt-1 mb-10")],
+                    [text("Real-time server components in Gleam ✨")],
+                  ),
+                  p(
+                    [class("my-5 text-center")],
+                    [
+                      text("Check out the "),
+                      a(
+                        [
+                          href("https://sprocket.live"),
+                          attributes.target("_blank"),
+                          class("underline text-blue-500 hover:text-blue-600"),
+                        ],
+                        [text("Sprocket docs")],
+                      ),
+                      text(" and the full "),
+                      a(
+                        [
+                          href("https://hexdocs.pm/sprocket"),
+                          attributes.target("_blank"),
+                          class("underline text-blue-500 hover:text-blue-600"),
+                        ],
+                        [text("API Reference")],
+                      ),
+                    ],
+                  ),
+                  p_text(
                     [],
+                    "Below are some example components to get you started. Components are rendered on the server and updates are patched into the DOM.",
+                  ),
+                  div(
+                    [class("mt-10 text-center")],
                     [
                       component(
                         clock,
                         ClockProps(
-                          label: Some("The current time is: "),
+                          label: Some("The current server time is: "),
                           time_unit: None,
                         ),
                       ),
                     ],
                   ),
                   div(
-                    [],
+                    [class("grid grid-cols-2 gap-8 justify-items-end")],
                     [
-                      component(
-                        counter,
-                        CounterProps(initial: Some(0), enable_reset: True),
+                      div(
+                        [class("m-1")],
+                        [
+                          component(
+                            counter,
+                            CounterProps(initial: Some(0), enable_reset: True),
+                          ),
+                        ],
                       ),
-                      component(hello_button, HelloButtonProps),
+                      div(
+                        [class("m-4 w-full")],
+                        [component(hello_button, HelloButtonProps)],
+                      ),
                     ],
                   ),
                 ],

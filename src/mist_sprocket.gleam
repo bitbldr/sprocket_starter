@@ -71,7 +71,7 @@ fn handle_ws_message(id, state: Nil, conn, message, ca, view) {
   case message {
     mist.Text(msg) -> {
       let assert Ok(msg) = bit_string.to_string(msg)
-      let assert Ok(_) = cassette.live_message(ca, id, view, msg, ws_send)
+      let assert Ok(_) = cassette.client_message(ca, id, view, msg, ws_send)
 
       actor.continue(state)
     }

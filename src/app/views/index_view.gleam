@@ -1,4 +1,3 @@
-import gleam/erlang
 import gleam/option.{None, Some}
 import sprocket/context.{Context}
 import sprocket/component.{component, render}
@@ -68,11 +67,15 @@ pub fn index_view(ctx: Context, props: IndexViewProps) {
                   h1(
                     [class("text-3xl mt-10 text-center")],
                     [
-                      text("Hello from"),
                       span(
-                        [class("italic bold ml-2")],
-                        [text("⚙️Sprocket")],
+                        [
+                          class(
+                            "inline-block animate-spin repeat-1 delay-500 ease-in-out",
+                          ),
+                        ],
+                        [text("⚙️")],
                       ),
+                      span([class("italic bold")], [text("Sprocket")]),
                     ],
                   ),
                   div(

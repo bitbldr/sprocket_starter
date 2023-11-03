@@ -5,10 +5,10 @@ import sprocket/hooks.{WithDeps, dep}
 import sprocket/component.{component, render}
 import sprocket/hooks/reducer.{reducer}
 import sprocket/hooks/callback.{callback}
-import sprocket/hooks/client.{client}
 import sprocket/internal/identifiable_callback.{CallbackFn}
 import sprocket/html.{div, span, text}
 import sprocket/html/attributes.{class, classes}
+import app/hooks/double_click.{double_click}
 
 type Model =
   Int
@@ -120,20 +120,14 @@ pub type DisplayProps {
 pub fn display(ctx: Context, props: DisplayProps) {
   let DisplayProps(count: count, on_reset: on_reset) = props
 
-  use ctx, client_doubleclick, _client_doubleclick_dispatch <- client(
+  use ctx, client_doubleclick <- double_click(
     ctx,
-    "DoubleClick",
-    Some(fn(msg, _payload, _dispatch) {
-      case msg {
-        "doubleclick" -> {
-          case on_reset {
-            Some(on_reset) -> on_reset()
-            None -> Nil
-          }
-        }
-        _ -> Nil
+    fn() {
+      case on_reset {
+        Some(on_reset) -> on_reset()
+        None -> Nil
       }
-    }),
+    },
   )
 
   render(

@@ -1,12 +1,10 @@
 import gleam/int
 import gleam/option.{None, Option, Some}
-import sprocket/context.{Context}
-import sprocket/hooks.{WithDeps, dep}
+import sprocket/context.{Context, WithDeps, dep}
 import sprocket/component.{component, render}
-import sprocket/hooks/reducer.{reducer}
-import sprocket/hooks/callback.{callback}
+import sprocket/hooks.{callback, reducer}
 import sprocket/internal/identifiable_callback.{CallbackFn}
-import sprocket/html.{div, span, text}
+import sprocket/html/elements.{button_text, div, span, text}
 import sprocket/html/attributes.{class, classes}
 import app/hooks/double_click.{double_click}
 
@@ -97,7 +95,7 @@ pub fn button(ctx: Context, props: ButtonProps) {
   render(
     ctx,
     [
-      html.button_text(
+      button_text(
         [
           attributes.on_click(on_click),
           classes([

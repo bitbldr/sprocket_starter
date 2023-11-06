@@ -7,14 +7,14 @@ import gleam/otp/actor
 import gleam/erlang/process
 import gleam/http/request.{Request}
 import gleam/http/response.{Response}
+import ids/uuid
 import mist.{Connection, ResponseData}
-import sprocket/sprocket
+import sprocket
 import sprocket/cassette.{Cassette}
 import sprocket/render.{render}
 import sprocket/component.{component}
-import sprocket/internal/render/html as sprocket_html
+import sprocket/html/render as html_render
 import sprocket/context.{FunctionalComponent}
-import sprocket/internal/utils/unique
 import sprocket/internal/logger
 
 pub fn live(
@@ -28,7 +28,7 @@ pub fn live(
   // if the request path ends with "live", then start a websocket connection
   case list.last(request.path_segments(req)) {
     Ok("live") -> {
-      let id = unique.new()
+      let assert Ok(id) = uuid.generate_v4()
 
       req
       |> mist.websocket(
@@ -36,12 +36,12 @@ pub fn live(
           handle_ws_message(id, state, conn, message, ca, view)
         },
         fn() { #(Nil, None) },
-        fn() { maybe_cleanup_sprocket(ca, id) },
+        fn() { sprocket.cleanup(ca, id) },
       )
     }
 
     _ -> {
-      let body = render(view, sprocket_html.renderer())
+      let body = render(view, html_render.renderer())
 
       response.new(200)
       |> response.set_body(body)
@@ -57,7 +57,7 @@ fn mist_response(response: Response(BitBuilder)) -> Response(ResponseData) {
   |> response.set_body(mist.Bytes(response.body))
 }
 
-fn handle_ws_message(id, state: Nil, conn, message, ca, view) {
+fn handle_ws_message(id: String, state: Nil, conn, message, ca, view) {
   let ws_send = fn(msg) {
     case mist.send_text_frame(conn, bit_string.from_string(msg)) {
       Ok(_) -> Ok(Nil)
@@ -71,13 +71,14 @@ fn handle_ws_message(id, state: Nil, conn, message, ca, view) {
   case message {
     mist.Text(msg) -> {
       let assert Ok(msg) = bit_string.to_string(msg)
-      let assert Ok(_) = cassette.client_message(ca, id, view, msg, ws_send)
+
+      let _ = sprocket.handle_client(id, ca, view, msg, ws_send)
 
       actor.continue(state)
     }
 
     mist.Closed | mist.Shutdown -> {
-      maybe_cleanup_sprocket(ca, id)
+      sprocket.cleanup(ca, id)
 
       actor.Stop(process.Normal)
     }
@@ -86,21 +87,6 @@ fn handle_ws_message(id, state: Nil, conn, message, ca, view) {
       io.debug(message)
 
       actor.continue(state)
-    }
-  }
-}
-
-// If the sprocket is still in the cassette, stop it. This can be called
-// either when the websocket received a CLOSED message or when connection is
-// terminated. In the latter case, the sprocket may already have been removed
-fn maybe_cleanup_sprocket(ca: Cassette, id: unique.Unique) {
-  let spkt = cassette.pop_sprocket(ca, id)
-  case spkt {
-    Ok(sprocket) -> {
-      sprocket.stop(sprocket)
-    }
-    Error(_) -> {
-      Nil
     }
   }
 }

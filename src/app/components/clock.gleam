@@ -1,12 +1,10 @@
 import gleam/io
 import gleam/erlang
 import gleam/option.{None, Option, Some}
-import sprocket/context.{Context}
+import sprocket/context.{Context, WithDeps, dep}
 import sprocket/component.{render}
-import sprocket/hooks.{WithDeps, dep}
-import sprocket/hooks/reducer.{reducer}
-import sprocket/hooks/effect.{effect}
-import sprocket/html.{span, text}
+import sprocket/hooks.{effect, reducer}
+import sprocket/html/elements.{span, text}
 import sprocket/internal/utils/timer.{interval}
 
 type Model {

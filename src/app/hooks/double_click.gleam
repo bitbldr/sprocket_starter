@@ -1,6 +1,6 @@
 import gleam/option.{Some}
 import sprocket/context.{Context}
-import sprocket/hooks/client.{client}
+import sprocket/hooks.{client}
 
 // Custom hook for handling client double click events
 pub fn double_click(ctx: Context, on_double_click: fn() -> Nil, cb) {

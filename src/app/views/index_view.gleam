@@ -1,7 +1,7 @@
 import gleam/option.{None, Some}
 import sprocket/context.{Context}
 import sprocket/component.{component, render}
-import sprocket/html.{
+import sprocket/html/elements.{
   a, body, div, h1, head, html, link, meta, p, p_text, script, span, text, title,
 }
 import sprocket/html/attributes.{

@@ -2,13 +2,11 @@ import gleam/int
 import gleam/list
 import gleam/pair
 import gleam/option.{None, Option, Some}
-import sprocket/context.{Context}
+import sprocket/context.{Context, WithDeps}
 import sprocket/component.{render}
-import sprocket/hooks.{WithDeps}
-import sprocket/hooks/reducer.{reducer}
-import sprocket/hooks/callback.{callback}
+import sprocket/hooks.{callback, reducer}
 import sprocket/internal/identifiable_callback.{CallbackFn}
-import sprocket/html.{button, div, span, text}
+import sprocket/html/elements.{button, div, span, text}
 import sprocket/html/attributes.{class, on_click}
 
 type Model {

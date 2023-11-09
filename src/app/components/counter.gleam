@@ -3,7 +3,6 @@ import gleam/option.{None, Option, Some}
 import sprocket/context.{Context, WithDeps, dep}
 import sprocket/component.{component, render}
 import sprocket/hooks.{callback, reducer}
-import sprocket/internal/identifiable_callback.{CallbackFn}
 import sprocket/html/elements.{button_text, div, span, text}
 import sprocket/html/attributes.{class, classes}
 import app/hooks/double_click.{double_click}
@@ -88,7 +87,7 @@ pub fn button(ctx: Context, props: ButtonProps) {
 
   use ctx, on_click <- callback(
     ctx,
-    CallbackFn(on_click),
+    fn(_) { on_click() },
     WithDeps([dep(on_click)]),
   )
 

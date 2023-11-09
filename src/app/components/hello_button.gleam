@@ -5,7 +5,6 @@ import gleam/option.{None, Option, Some}
 import sprocket/context.{Context, WithDeps}
 import sprocket/component.{render}
 import sprocket/hooks.{callback, reducer}
-import sprocket/internal/identifiable_callback.{CallbackFn}
 import sprocket/html/elements.{button, div, span, text}
 import sprocket/html/attributes.{class, on_click}
 
@@ -43,7 +42,7 @@ pub fn hello_button(ctx: Context, _props: HelloButtonProps) {
 
   use ctx, on_say_hello <- callback(
     ctx,
-    CallbackFn(fn() { dispatch(SayHello) }),
+    fn(_) { dispatch(SayHello) },
     WithDeps([]),
   )
 

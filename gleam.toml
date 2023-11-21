@@ -20,7 +20,7 @@ links = [{ title = "Website", href = "https://sprocket.live" }]
 #]
 
 [dependencies]
-gleam_stdlib = "~> 0.31"
+gleam_stdlib = "~> 0.32"
 gleam_http = "~> 3.5"
 mist = "~> 0.14"
 sprocket = "~> 0.1.8"

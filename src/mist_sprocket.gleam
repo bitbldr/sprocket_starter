@@ -36,7 +36,7 @@ pub fn live(
           handle_ws_message(id, state, conn, message, ca, view)
         },
         fn() { #(Nil, None) },
-        fn() { sprocket.cleanup(ca, id) },
+        fn(_) { sprocket.cleanup(ca, id) },
       )
     }
 

@@ -1,5 +1,5 @@
 import gleam/option.{None, Some}
-import sprocket/context.{Context}
+import sprocket/context.{type Context}
 import sprocket/component.{component, render}
 import sprocket/html/elements.{
   a, body, div, h1, head, html, link, meta, p, p_text, script, span, text, title,
@@ -8,7 +8,7 @@ import sprocket/html/attributes.{
   charset, class, content, crossorigin, href, integrity, lang, name,
   referrerpolicy, rel, src,
 }
-import app/page_route.{PageRoute}
+import app/page_route.{type PageRoute}
 import app/components/counter.{CounterProps, counter}
 import app/components/clock.{ClockProps, clock}
 import app/components/hello_button.{HelloButtonProps, hello_button}

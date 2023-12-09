@@ -1,7 +1,7 @@
 import gleam/io
 import gleam/erlang
-import gleam/option.{None, Option, Some}
-import sprocket/context.{Context, WithDeps, dep}
+import gleam/option.{type Option, None, Some}
+import sprocket/context.{type Context, WithDeps, dep}
 import sprocket/component.{render}
 import sprocket/hooks.{effect, reducer}
 import sprocket/html/elements.{span, text}

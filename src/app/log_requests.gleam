@@ -1,7 +1,7 @@
 import gleam/http
-import gleam/http/request.{Request}
-import gleam/http/response.{Response}
-import gleam/http/service.{Service}
+import gleam/http/request.{type Request}
+import gleam/http/response.{type Response}
+import gleam/http/service.{type Service}
 import gleam/int
 import gleam/string
 import app/utils/logger

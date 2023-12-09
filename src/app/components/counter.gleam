@@ -1,8 +1,8 @@
 import gleam/int
-import gleam/option.{None, Option, Some}
-import sprocket/context.{Context, WithDeps, dep}
+import gleam/option.{type Option, None, Some}
+import sprocket/context.{type Context}
 import sprocket/component.{component, render}
-import sprocket/hooks.{callback, reducer}
+import sprocket/hooks.{handler, reducer}
 import sprocket/html/elements.{button_text, div, span, text}
 import sprocket/html/attributes.{class, classes}
 import app/hooks/double_click.{double_click}
@@ -85,18 +85,14 @@ pub fn button(ctx: Context, props: ButtonProps) {
     StyledButtonProps(class, label, on_click) -> #(Some(class), label, on_click)
   }
 
-  use ctx, on_click <- callback(
-    ctx,
-    fn(_) { on_click() },
-    WithDeps([dep(on_click)]),
-  )
+  use ctx, handle_click <- handler(ctx, fn(_) { on_click() })
 
   render(
     ctx,
     [
       button_text(
         [
-          attributes.on_click(on_click),
+          attributes.on_click(handle_click),
           classes([
             class,
             Some(

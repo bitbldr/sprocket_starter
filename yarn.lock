@@ -3120,11 +3120,6 @@ minimatch@^3.0.4, minimatch@^3.1.1:
   dependencies:
     brace-expansion "^1.1.7"
 
-morphdom@^2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/morphdom/-/morphdom-2.7.0.tgz#9ef0c4bc15ac8725df398d127c6984f62e7f89e8"
-  integrity sha512-8L8DwbdjjWwM/aNqj7BSoSn4G7SQLNiDcxCnMWbf506jojR6lNQ5YOmQqXEIE8u3C492UlkN4d0hQwz97+M1oQ==
-
 ms@2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
@@ -3669,6 +3664,11 @@ slash@^3.0.0:
   resolved "https://registry.yarnpkg.com/slash/-/slash-3.0.0.tgz#6539be870c165adbd5240220dbe361f1bc4d4634"
   integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
 
+snabbdom@^3.5.1:
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/snabbdom/-/snabbdom-3.6.2.tgz#57dd66878f6320497fa7f67941df356a045c75a1"
+  integrity sha512-ig5qOnCDbugFntKi6c7Xlib8bA6xiJVk8O+WdFrV3wxbMqeHO0hXFQC4nAhPVWfZfi8255lcZkNhtIBINCc4+Q==
+
 source-map-js@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
@@ -3697,12 +3697,12 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==
 
-sprocket-js@^0.1.6:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/sprocket-js/-/sprocket-js-0.1.6.tgz#a42911c9e30360a1f4b00485308f10c1c3a02b71"
-  integrity sha512-8NYAeXnAHBi/rC5K+slfo719nm5i2ZEH3NTxncgGCp6jL6yrDJAM87UDPd8zG9LLyxnBEIYK/3oK899prbR4kw==
+sprocket-js@^0.1.9:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/sprocket-js/-/sprocket-js-0.1.9.tgz#bab6e1b77c68c4ffee0b795b717543968c22c1da"
+  integrity sha512-3WMJjuXIX+dtQyTN5KXob3yOTHxWUwzuFWF+zR53Q2/SqF2WDXH4yntFD1ROLCWhaTkfkwxDVvhBDmuoUPZY3A==
   dependencies:
-    morphdom "^2.7.0"
+    snabbdom "^3.5.1"
     topbar "^2.0.1"
 
 srcset@4:

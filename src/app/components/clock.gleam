@@ -1,10 +1,11 @@
 import gleam/io
+import gleam/int
 import gleam/erlang
 import gleam/option.{type Option, None, Some}
 import sprocket/context.{type Context, WithDeps, dep}
 import sprocket/component.{render}
 import sprocket/hooks.{effect, reducer}
-import sprocket/html/elements.{span, text}
+import sprocket/html/elements.{fragment, span, text}
 import sprocket/internal/utils/timer.{interval}
 
 type Model {
@@ -57,7 +58,6 @@ pub fn clock(ctx: Context, props: ClockProps) {
     fn() {
       let interval_duration = case time_unit {
         erlang.Millisecond -> 1
-        erlang.Second -> 1000
         _ -> 1000
       }
 
@@ -74,16 +74,13 @@ pub fn clock(ctx: Context, props: ClockProps) {
     WithDeps([dep(time), dep(time_unit)]),
   )
 
-  let current_time = format_unix_timestamp(time, time_unit)
+  let current_time = int.to_string(time)
 
   render(
     ctx,
-    case label {
+    fragment(case label {
       Some(label) -> [span([], [text(label)]), span([], [text(current_time)])]
       None -> [text(current_time)]
-    },
+    }),
   )
 }
-
-@external(erlang, "sprocket_starter_ffi", "format_unix_timestamp")
-pub fn format_unix_timestamp(a: Int, b: erlang.TimeUnit) -> String

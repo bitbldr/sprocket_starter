@@ -15,7 +15,7 @@ pub type Level {
 /// want, rather than the more verbose Erlang default format.
 ///
 @external(erlang, "sprocket_starter_ffi", "configure_logger_backend")
-pub fn configure_backend() -> Nil
+pub fn configure_backend(level: Level) -> Nil
 
 @external(erlang, "logger", "log")
 fn erlang_log(a: Level, b: String) -> Dynamic

@@ -21,7 +21,7 @@ fn update(model: Model, msg: Msg) -> Model {
   case msg {
     NoOp -> model
     SayHello ->
-      Model(..model, selection: Some(int.random(0, list.length(model.options))))
+      Model(..model, selection: Some(int.random(list.length(model.options))))
   }
 }
 
@@ -52,32 +52,24 @@ pub fn hello_button(ctx: Context, _props: HelloButtonProps) {
 
   render(
     ctx,
-    [
-      div(
-        [],
+    div([], [
+      button(
         [
-          button(
-            [
-              class(
-                "p-2 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white rounded",
-              ),
-              on_click(say_hello),
-            ],
-            [text("Say Hello!")],
+          class(
+            "p-2 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white rounded",
           ),
-          ..case hello {
-            None -> []
-            Some(hello) -> [
-              span([class("ml-2")], [text(pair.second(hello))]),
-              span(
-                [class("ml-2 text-gray-400 bold")],
-                [text(pair.first(hello))],
-              ),
-            ]
-          }
+          on_click(say_hello),
         ],
+        [text("Say Hello!")],
       ),
-    ],
+      ..case hello {
+        None -> []
+        Some(hello) -> [
+          span([class("ml-2")], [text(pair.second(hello))]),
+          span([class("ml-2 text-gray-400 bold")], [text(pair.first(hello))]),
+        ]
+      }
+    ]),
   )
 }
 

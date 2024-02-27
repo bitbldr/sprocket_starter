@@ -2,6 +2,7 @@ import gleam/bytes_builder.{type BytesBuilder}
 import gleam/string
 import gleam/bit_array
 import gleam/result
+import gleam/option.{None}
 import gleam/erlang
 import gleam/http.{Get}
 import gleam/http/request.{type Request}
@@ -16,22 +17,23 @@ import app/utils/common.{mist_response}
 import app/app_context.{type AppContext}
 import app/views/index_view.{IndexViewProps, index_view}
 import app/page_route
-import mist_sprocket
+import mist_sprocket.{component}
 
-pub fn router(app_ctx: AppContext) {
+pub fn router(app: AppContext) {
   fn(request: Request(Connection)) -> Response(ResponseData) {
     use <- rescue_crashes()
 
     case request.method, request.path_segments(request) {
       Get, _ ->
-        mist_sprocket.live(
+        component(
           request,
-          app_ctx.ca,
           index_view,
           IndexViewProps(
             route: page_route.from_string(request.path),
-            csrf: csrf.generate(app_ctx.secret_key_base),
+            csrf: csrf.generate(app.secret_key_base),
           ),
+          app.validate_csrf,
+          None,
         )
 
       _, _ ->

@@ -3697,10 +3697,10 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==
 
-sprocket-js@^0.1.9:
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/sprocket-js/-/sprocket-js-0.1.9.tgz#bab6e1b77c68c4ffee0b795b717543968c22c1da"
-  integrity sha512-3WMJjuXIX+dtQyTN5KXob3yOTHxWUwzuFWF+zR53Q2/SqF2WDXH4yntFD1ROLCWhaTkfkwxDVvhBDmuoUPZY3A==
+sprocket-js@^0.1.10:
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/sprocket-js/-/sprocket-js-0.1.10.tgz#f211cfa72c016d07eb89cea87d6c1ede161e3f39"
+  integrity sha512-12PGTP9hWPRlPGNBqS6pfan/ev2i+kB2/Tlr3gVoT6LJty8cn7S8mfpo5bPPe0z4Di8pSDESFUTSIZgUJX93Cg==
   dependencies:
     snabbdom "^3.5.1"
     topbar "^2.0.1"

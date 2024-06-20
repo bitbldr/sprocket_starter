@@ -1,23 +1,23 @@
-import gleam/bytes_builder.{type BytesBuilder}
-import gleam/string
+import app/app_context.{type AppContext}
+import app/components/page.{PageProps, page}
+import app/layouts/page_layout.{page_layout}
+import app/log_requests
+import app/static
+import app/utils/common.{mist_response}
+import app/utils/csrf
+import app/utils/logger
 import gleam/bit_array
-import gleam/result
-import gleam/option.{None}
+import gleam/bytes_builder.{type BytesBuilder}
 import gleam/erlang
 import gleam/http.{Get}
 import gleam/http/request.{type Request}
 import gleam/http/response.{type Response}
-import mist.{type Connection, type ResponseData}
 import gleam/http/service.{type Service}
-import app/log_requests
-import app/static
-import app/utils/csrf
-import app/utils/logger
-import app/utils/common.{mist_response}
-import app/app_context.{type AppContext}
-import app/views/index_view.{IndexViewProps, index_view}
-import app/page_route
-import mist_sprocket.{component}
+import gleam/option.{None}
+import gleam/result
+import gleam/string
+import mist.{type Connection, type ResponseData}
+import mist_sprocket.{view}
 
 pub fn router(app: AppContext) {
   fn(request: Request(Connection)) -> Response(ResponseData) {
@@ -25,13 +25,14 @@ pub fn router(app: AppContext) {
 
     case request.method, request.path_segments(request) {
       Get, _ ->
-        component(
+        view(
           request,
-          index_view,
-          IndexViewProps(
-            route: page_route.from_string(request.path),
-            csrf: csrf.generate(app.secret_key_base),
+          page_layout(
+            "Welcome to Sprocket!",
+            csrf.generate(app.secret_key_base),
           ),
+          page,
+          fn(_) { PageProps(app, path: request.path) },
           app.validate_csrf,
           None,
         )
@@ -46,7 +47,6 @@ pub fn router(app: AppContext) {
 
 pub fn stack(ctx: AppContext) -> Service(Connection, ResponseData) {
   router(ctx)
-  // |> string_body_middleware
   |> log_requests.middleware
   |> static.middleware()
   |> service.prepend_response_header("made-with", "Gleam")

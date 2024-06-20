@@ -1,9 +1,9 @@
-import gleam/io
-import gleam/int
 import gleam/erlang
+import gleam/int
+import gleam/io
 import gleam/option.{type Option, None, Some}
-import sprocket/context.{type Context, WithDeps, dep}
 import sprocket/component.{render}
+import sprocket/context.{type Context, dep}
 import sprocket/hooks.{effect, reducer}
 import sprocket/html/elements.{fragment, span, text}
 import sprocket/internal/utils/timer.{interval}
@@ -45,7 +45,7 @@ pub fn clock(ctx: Context, props: ClockProps) {
       io.println("Clock component mounted!")
       None
     },
-    WithDeps([]),
+    [],
   )
 
   let time_unit =
@@ -60,18 +60,14 @@ pub fn clock(ctx: Context, props: ClockProps) {
         erlang.Millisecond -> 1
         _ -> 1000
       }
-
       let update_time = fn() {
         dispatch(UpdateTime(erlang.system_time(time_unit)))
       }
-
       update_time()
-
       let cancel = interval(interval_duration, update_time)
-
       Some(fn() { cancel() })
     },
-    WithDeps([dep(time), dep(time_unit)]),
+    [dep(time), dep(time_unit)],
   )
 
   let current_time = int.to_string(time)

@@ -11,14 +11,14 @@ window.addEventListener("DOMContentLoaded", () => {
     ?.getAttribute("content");
 
   if (csrfToken) {
-    let livePath =
+    let connectPath =
       window.location.pathname === "/"
-        ? "/live"
-        : window.location.pathname.split("/").concat("live").join("/");
+        ? "/connect"
+        : window.location.pathname.split("/").concat("connect").join("/");
 
-    connect(livePath, {
+    connect(connectPath, {
       csrfToken,
-      // targetEl: document.querySelector("#app") as Element,
+      targetEl: document.querySelector("#app") as Element,
       hooks,
     });
   } else {

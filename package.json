@@ -36,6 +36,6 @@
     "build": "gleam build && yarn run client:build && yarn run tailwind:build"
   },
   "dependencies": {
-    "sprocket-js": "^0.1.10"
+    "sprocket-js": "^0.1.12"
   }
 }

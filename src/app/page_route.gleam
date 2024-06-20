@@ -1,5 +1,5 @@
-import gleam/string
 import app/utils/logger
+import gleam/string
 
 pub type Page {
   Page(title: String, route: PageRoute)

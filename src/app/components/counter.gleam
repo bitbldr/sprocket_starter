@@ -1,11 +1,11 @@
+import app/hooks/double_click.{double_click}
 import gleam/int
 import gleam/option.{type Option, None, Some}
-import sprocket/context.{type Context}
 import sprocket/component.{component, render}
+import sprocket/context.{type Context}
 import sprocket/hooks.{handler, reducer}
-import sprocket/html/elements.{button_text, div, span, text}
 import sprocket/html/attributes.{class, classes}
-import app/hooks/double_click.{double_click}
+import sprocket/html/elements.{button_text, div, span, text}
 
 type Model =
   Int

@@ -1,7 +1,7 @@
 import gleam/bit_array
 import gleam/bytes_builder.{type BytesBuilder}
-import gleam/http/response.{type Response}
 import gleam/crypto
+import gleam/http/response.{type Response}
 import gleam/string
 import mist.{type ResponseData}
 

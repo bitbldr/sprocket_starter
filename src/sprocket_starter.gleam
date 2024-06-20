@@ -1,13 +1,13 @@
-import gleam/int
-import gleam/string
-import gleam/result
+import app/app_context.{AppContext}
+import app/router
+import app/utils/common
+import app/utils/logger
 import gleam/erlang/os
 import gleam/erlang/process
+import gleam/int
+import gleam/result
+import gleam/string
 import mist
-import app/router
-import app/app_context.{AppContext}
-import app/utils/logger
-import app/utils/common
 
 pub fn main() {
   logger.configure_backend(logger.Info)

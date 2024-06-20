@@ -1,13 +1,13 @@
-import gleam/http/response.{type Response, Response}
-import gleam/http/request.{type Request}
-import gleam/http/service.{type Service}
+import app/utils/common.{mist_response}
 import gleam/bytes_builder
-import mist.{type ResponseData}
+import gleam/http/request.{type Request}
+import gleam/http/response.{type Response, Response}
+import gleam/http/service.{type Service}
+import gleam/list
 import gleam/result
 import gleam/string
-import gleam/list
+import mist.{type ResponseData}
 import simplifile
-import app/utils/common.{mist_response}
 
 pub fn middleware(
   service: Service(in, ResponseData),

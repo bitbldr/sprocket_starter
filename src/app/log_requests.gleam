@@ -1,10 +1,10 @@
+import app/utils/logger
 import gleam/http
 import gleam/http/request.{type Request}
 import gleam/http/response.{type Response}
 import gleam/http/service.{type Service}
 import gleam/int
 import gleam/string
-import app/utils/logger
 
 fn format_log_line(
   request: Request(a),
@@ -18,8 +18,8 @@ fn format_log_line(
 
   string.concat([
     request.method
-    |> http.method_to_string
-    |> string.uppercase,
+      |> http.method_to_string
+      |> string.uppercase,
     " ",
     request.path,
     " ",

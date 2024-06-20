@@ -6,7 +6,6 @@ import gleam/erlang/os
 import gleam/erlang/process
 import gleam/int
 import gleam/result
-import gleam/string
 import mist
 
 pub fn main() {
@@ -19,13 +18,11 @@ pub fn main() {
 
   let port = load_port()
 
-  router.stack(AppContext(secret_key_base, validate_csrf))
-  |> mist.new
-  |> mist.port(port)
-  |> mist.start_http
-
-  string.concat(["Listening on localhost:", int.to_string(port), " ✨"])
-  |> logger.info
+  let assert Ok(_) =
+    router.stack(AppContext(secret_key_base, validate_csrf))
+    |> mist.new
+    |> mist.port(port)
+    |> mist.start_http
 
   process.sleep_forever()
 }

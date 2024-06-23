@@ -8,7 +8,7 @@ description = "Example starter app for Sprocket, a library for building live vie
 licenses = ["MIT"]
 repository = { type = "github", user = "bitbldr", repo = "sprocket_starter" }
 links = [{ title = "Website", href = "https://sprocket.live" }]
-gleam = ">= 0.32.0"
+gleam = ">= 1.0.0"
 
 # Modules that should be considered "internal" and will not be included in
 # generated documentation. Note this currently only affects documentation;
@@ -23,7 +23,7 @@ gleam = ">= 0.32.0"
 [dependencies]
 gleam_stdlib = "~> 0.36"
 gleam_http = "~> 3.6"
-mist = "~> 1.0"
+mist = "~> 1.1.0"
 sprocket = "~> 0.2.4"
 #sprocket = { path = "../sprocket" }
 gleam_erlang = "~> 0.24"

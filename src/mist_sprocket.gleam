@@ -105,7 +105,10 @@ fn socket_initializer(view, initial_props, csrf_validator, opts) {
       State(sprocket.new(
         view,
         initial_props,
-        fn(msg) { process.send(self, msg) |> Ok },
+        fn(msg) {
+          process.send(self, msg)
+          |> Ok
+        },
         csrf_validator,
         opts,
       )),

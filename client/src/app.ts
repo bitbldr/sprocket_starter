@@ -1,8 +1,8 @@
-import { doubleclick } from "./hooks/doubleclick";
+import { DoubleClick } from "./hooks/doubleclick";
 import { connect } from "sprocket-js";
 
 const hooks = {
-  DoubleClick: doubleclick,
+  DoubleClick,
 };
 
 window.addEventListener("DOMContentLoaded", () => {

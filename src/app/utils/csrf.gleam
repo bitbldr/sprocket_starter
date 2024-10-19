@@ -13,7 +13,7 @@ pub fn validate(csrf_token: String, secret_key_base: String) {
       bit_array.from_string(secret_key_base),
     )
   {
-    Ok(token) -> Ok(token)
-    Error(_) -> Error("Invalid CSRF token")
+    Ok(_token) -> Ok(Nil)
+    Error(_) -> Error(Nil)
   }
 }

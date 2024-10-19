@@ -1,6 +1,7 @@
 import app/app_context.{AppContext}
 import app/router
 import app/utils/common
+import app/utils/csrf
 import app/utils/logger
 import gleam/erlang/os
 import gleam/erlang/process
@@ -11,15 +12,11 @@ import mist
 pub fn main() {
   logger.configure_backend(logger.Info)
 
-  let secret_key_base = common.random_string(64)
-
-  // TODO: actually validate csrf token
-  let validate_csrf = fn(_csrf) { Ok(Nil) }
-
+  let secret_key_base = load_secret_key_base()
   let port = load_port()
 
   let assert Ok(_) =
-    router.stack(AppContext(secret_key_base, validate_csrf))
+    router.stack(AppContext(secret_key_base, csrf.validate(_, secret_key_base)))
     |> mist.new
     |> mist.port(port)
     |> mist.start_http
@@ -31,4 +28,9 @@ fn load_port() -> Int {
   os.get_env("PORT")
   |> result.then(int.parse)
   |> result.unwrap(3000)
+}
+
+fn load_secret_key_base() -> String {
+  os.get_env("SECRET_KEY_BASE")
+  |> result.unwrap(common.random_string(64))
 }

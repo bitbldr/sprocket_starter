@@ -2,6 +2,7 @@ import app/app_context.{type AppContext}
 import app/components/clock.{ClockProps, clock}
 import app/components/counter.{CounterProps, counter}
 import app/components/hello_button.{HelloButtonProps, hello_button}
+import gleam/erlang
 import gleam/option.{None, Some}
 import sprocket/component.{component, render}
 import sprocket/context.{type Context}
@@ -56,7 +57,7 @@ pub fn page(ctx: Context, _props: PageProps) {
           clock,
           ClockProps(
             label: Some("The current system time is: "),
-            time_unit: None,
+            time_unit: Some(erlang.Second),
           ),
         ),
       ]),

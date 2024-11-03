@@ -5,8 +5,9 @@ import gleam/option.{type Option, None, Some}
 import sprocket/component.{render}
 import sprocket/context.{type Context}
 import sprocket/hooks.{handler, reducer}
-import sprocket/html/attributes.{class, on_click}
+import sprocket/html/attributes.{class}
 import sprocket/html/elements.{button, div, span, text}
+import sprocket/html/events
 
 type Model {
   Model(selection: Option(Int), options: List(HelloOption))
@@ -17,16 +18,18 @@ type Msg {
   SayHello
 }
 
-fn update(model: Model, msg: Msg) -> Model {
+fn update(model: Model, msg: Msg) {
   case msg {
-    NoOp -> model
-    SayHello ->
-      Model(..model, selection: Some(int.random(list.length(model.options))))
+    NoOp -> #(model, [])
+    SayHello -> #(
+      Model(..model, selection: Some(int.random(list.length(model.options)))),
+      [],
+    )
   }
 }
 
-fn initial(options: List(HelloOption)) -> Model {
-  Model(selection: None, options: options)
+fn init(options: List(HelloOption)) {
+  #(Model(selection: None, options: options), [])
 }
 
 pub type HelloButtonProps {
@@ -36,7 +39,7 @@ pub type HelloButtonProps {
 pub fn hello_button(ctx: Context, _props: HelloButtonProps) {
   use ctx, Model(selection: selection, options: options), dispatch <- reducer(
     ctx,
-    initial(hello_strings()),
+    init(hello_strings()),
     update,
   )
 
@@ -58,7 +61,7 @@ pub fn hello_button(ctx: Context, _props: HelloButtonProps) {
           class(
             "p-2 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white rounded",
           ),
-          on_click(say_hello),
+          events.on_click(say_hello),
         ],
         [text("Say Hello!")],
       ),

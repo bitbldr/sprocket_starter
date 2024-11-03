@@ -3,7 +3,7 @@ import app/components/clock.{ClockProps, clock}
 import app/components/counter.{CounterProps, counter}
 import app/components/hello_button.{HelloButtonProps, hello_button}
 import gleam/erlang
-import gleam/option.{None, Some}
+import gleam/option.{Some}
 import sprocket/component.{component, render}
 import sprocket/context.{type Context}
 import sprocket/html/attributes.{class, href, id}

@@ -1999,10 +1999,10 @@ spawn-command@0.0.2-1:
   resolved "https://registry.yarnpkg.com/spawn-command/-/spawn-command-0.0.2-1.tgz#62f5e9466981c1b796dc5929937e11c9c6921bd0"
   integrity sha512-n98l9E2RMSJ9ON1AKisHzz7V42VDiBQGY6PB1BwRglz99wpVsSuGzQ+jOi6lFXBGVTCrRpltvjm+/XA+tpeJrg==
 
-sprocket-js@^0.1.12:
-  version "0.1.12"
-  resolved "https://registry.yarnpkg.com/sprocket-js/-/sprocket-js-0.1.12.tgz#5c975a1338de2f65dc0c84930391323045e785e6"
-  integrity sha512-wz/su/t9pOdL7LdCF9+UtG1cOCKR5gpgeOJlGlJcVpUV4veNtny3iPNauG6ceI1FakrRR0opmRPmjL2rXBF5bw==
+sprocket-js@^0.1.13:
+  version "0.1.13"
+  resolved "https://registry.yarnpkg.com/sprocket-js/-/sprocket-js-0.1.13.tgz#1b3f0eb0a2c874b24ca2de1eade2c9046864e320"
+  integrity sha512-CmdzETIacbPVyTOhTCOC4cHdkFmNXDtGr8rHpbfHw8hl0WBDpYLkUhA0Kn6U2XnAFaY7PTYS4ZMfp7ptS23HvQ==
   dependencies:
     snabbdom "^3.5.1"
     topbar "^2.0.1"
@@ -2151,9 +2151,9 @@ to-regex-range@^5.0.1:
     is-number "^7.0.0"
 
 topbar@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/topbar/-/topbar-2.0.1.tgz#03a0ae1a92ff9566af8b0c7ddf711f5303bf40a3"
-  integrity sha512-4KvcxrJuGS3wkx8QacT7dfnkwyPJOuDzGUvHO/GDZqgoEEEFKTnZqCC6PYcvuZ0OfMNdyyKeAzVB2MPk0BIe8A==
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/topbar/-/topbar-2.0.2.tgz#fd5890a84553da2469f35d24e6304e7f71d179e2"
+  integrity sha512-hCKoSaWxXqGIgjag8rIVajysE41as7ti5z9GDO5rcx2zmII1/rY5zvO9IgKwbf50HL82EzlimL6OmPYPUgbpEw==
 
 tree-kill@^1.2.2:
   version "1.2.2"

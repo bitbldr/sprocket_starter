@@ -6,6 +6,7 @@ import sprocket/context.{type Context}
 import sprocket/hooks.{handler, reducer}
 import sprocket/html/attributes.{class, classes}
 import sprocket/html/elements.{button_text, div, span, text}
+import sprocket/html/events
 
 type Model =
   Int
@@ -15,12 +16,16 @@ type Msg {
   ResetCounter
 }
 
-fn update(_model: Model, msg: Msg) -> Model {
+fn init(count: Int) {
+  #(count, [])
+}
+
+fn update(_model: Model, msg: Msg) {
   case msg {
     UpdateCounter(count) -> {
-      count
+      #(count, [])
     }
-    ResetCounter -> 0
+    ResetCounter -> #(0, [])
   }
 }
 
@@ -32,7 +37,11 @@ pub fn counter(ctx: Context, props: CounterProps) {
   let CounterProps(initial: initial, enable_reset: enable_reset) = props
 
   // Define a reducer to handle events and update the state
-  use ctx, count, dispatch <- reducer(ctx, option.unwrap(initial, 0), update)
+  use ctx, count, dispatch <- reducer(
+    ctx,
+    init(option.unwrap(initial, 0)),
+    update,
+  )
 
   render(
     ctx,
@@ -82,7 +91,7 @@ pub fn button(ctx: Context, props: ButtonProps) {
     ctx,
     button_text(
       [
-        attributes.on_click(handle_click),
+        events.on_click(handle_click),
         classes([
           class,
           Some(

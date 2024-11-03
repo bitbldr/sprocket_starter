@@ -21,11 +21,10 @@ gleam = ">= 1.0.0"
 #]
 
 [dependencies]
-gleam_stdlib = "~> 0.39"
+gleam_stdlib = "~> 0.41"
 gleam_http = "~> 3.6"
-mist = "~> 1.1.0"
-sprocket = "~> 0.2.5"
-#sprocket = { path = "../sprocket" }
+mist = "~> 3.0.0"
+sprocket = "~> 0.3.0"
 gleam_erlang = "~> 0.24"
 gleam_json = "~> 0.6"
 gleam_crypto = "~> 1.3"

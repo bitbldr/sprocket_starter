@@ -1,6 +1,5 @@
 import app/app_context.{AppContext}
 import app/router
-import app/utils/common
 import app/utils/csrf
 import app/utils/logger
 import envoy
@@ -32,5 +31,5 @@ fn load_port() -> Int {
 
 fn load_secret_key_base() -> String {
   envoy.get("SECRET_KEY_BASE")
-  |> result.unwrap(common.random_string(64))
+  |> result.unwrap("change_me")
 }

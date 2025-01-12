@@ -3,7 +3,7 @@ import gleam/int
 import gleam/option.{type Option, None, Some}
 import sprocket/component.{component, render}
 import sprocket/context.{type Context}
-import sprocket/hooks.{handler, reducer}
+import sprocket/hooks.{reducer}
 import sprocket/html/attributes.{class, classes}
 import sprocket/html/elements.{button_text, div, span, text}
 import sprocket/html/events
@@ -85,13 +85,11 @@ pub fn button(ctx: Context, props: ButtonProps) {
     StyledButtonProps(class, label, on_click) -> #(Some(class), label, on_click)
   }
 
-  use ctx, handle_click <- handler(ctx, fn(_) { on_click() })
-
   render(
     ctx,
     button_text(
       [
-        events.on_click(handle_click),
+        events.on_click(fn(_) { on_click() }),
         classes([
           class,
           Some(

@@ -4,7 +4,7 @@ import gleam/list
 import gleam/option.{type Option, None, Some}
 import sprocket/component.{render}
 import sprocket/context.{type Context}
-import sprocket/hooks.{handler, reducer}
+import sprocket/hooks.{reducer}
 import sprocket/html/attributes.{class}
 import sprocket/html/elements.{button, div, span, text}
 import sprocket/html/events
@@ -43,7 +43,7 @@ pub fn hello_button(ctx: Context, _props: HelloButtonProps) {
     update,
   )
 
-  use ctx, say_hello <- handler(ctx, fn(_) { dispatch(SayHello) })
+  let say_hello = fn(_) { dispatch(SayHello) }
 
   let hello =
     selection

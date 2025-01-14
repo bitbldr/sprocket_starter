@@ -1,11 +1,11 @@
 import gleam/bit_array
-import gleam/bytes_builder.{type BytesBuilder}
+import gleam/bytes_tree.{type BytesTree}
 import gleam/crypto
 import gleam/http/response.{type Response}
 import gleam/string
 import mist.{type ResponseData}
 
-pub fn mist_response(response: Response(BytesBuilder)) -> Response(ResponseData) {
+pub fn mist_response(response: Response(BytesTree)) -> Response(ResponseData) {
   response.new(response.status)
   |> response.set_body(mist.Bytes(response.body))
 }

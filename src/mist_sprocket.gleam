@@ -1,4 +1,4 @@
-import gleam/bytes_builder
+import gleam/bytes_tree
 import gleam/erlang/process.{type Selector}
 import gleam/function
 import gleam/http/request.{type Request}
@@ -52,7 +52,7 @@ pub fn component(
       |> response.prepend_header("content-type", "text/html")
       |> response.set_body(
         body
-        |> bytes_builder.from_string
+        |> bytes_tree.from_string
         |> mist.Bytes,
       )
     }
@@ -86,7 +86,7 @@ pub fn view(
       |> response.prepend_header("content-type", "text/html")
       |> response.set_body(
         body
-        |> bytes_builder.from_string
+        |> bytes_tree.from_string
         |> mist.Bytes,
       )
     }

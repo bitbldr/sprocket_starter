@@ -18,15 +18,23 @@ pub fn page(ctx: Context, _props: PageProps) {
   render(
     ctx,
     div([id("app"), class("container mx-auto px-4")], [
-      h1([class("text-3xl mt-10 text-center")], [
-        span(
-          [class("inline-block animate-spin repeat-1 delay-500 ease-in-out")],
-          [text("⚙️")],
-        ),
-        span([class("italic bold")], [text("Sprocket")]),
-      ]),
-      div([class("text-gray-500 text-center mt-1 mb-10")], [
-        text("Real-time server UI components in Gleam ✨"),
+      div([class("p-2 mt-10 w-full text-center")], [
+        h1([class("text-4xl")], [
+          span(
+            [
+              class(
+                "inline-block animate-spin repeat-1 delay-500 ease-in-out mr-2",
+              ),
+            ],
+            [text("⚙️")],
+          ),
+          span([class("font-sprocket-logo italic text-3xl text-[#205a96]")], [
+            text("SPROCKET"),
+          ]),
+        ]),
+        div([class("text-gray-500 text-sm")], [
+          text("Real-time server component framework for Gleam ✨"),
+        ]),
       ]),
       p([class("my-5 text-center")], [
         text("Check out the "),

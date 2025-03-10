@@ -28,7 +28,7 @@ pub fn middleware(
     let file_contents =
       path
       |> simplifile.read_bits
-      |> result.nil_error
+      |> result.map_error(string.inspect)
       |> result.map(bytes_tree.from_bit_array)
 
     let extension =

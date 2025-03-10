@@ -2150,10 +2150,10 @@ spawn-command@0.0.2-1:
   resolved "https://registry.yarnpkg.com/spawn-command/-/spawn-command-0.0.2-1.tgz#62f5e9466981c1b796dc5929937e11c9c6921bd0"
   integrity sha512-n98l9E2RMSJ9ON1AKisHzz7V42VDiBQGY6PB1BwRglz99wpVsSuGzQ+jOi6lFXBGVTCrRpltvjm+/XA+tpeJrg==
 
-sprocket-js@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/sprocket-js/-/sprocket-js-0.4.1.tgz#43ea16ebd6789ad0f1f549da433aab11fa3ac8c2"
-  integrity sha512-6eSVevCXO0vdeE5AcbF4DpLMkWVRQe0VPNcUEH+rwv2ydqndNcM7hquFer0rxFdmwkvaB+Fwv218aktvdcHpNw==
+sprocket-js@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/sprocket-js/-/sprocket-js-1.0.0.tgz#a6936626d11ae39574215fd5effc67ca97a58885"
+  integrity sha512-sL3lY8y0GDTSP63CL0Rn/49HYpFnF5I9uAfgIAAhkBeYU9bXHjX097rv+HX/SULwRRmWHJbnI49gl+dWPPWtgA==
   dependencies:
     reconnecting-websocket "^4.4.0"
     snabbdom "^3.5.1"

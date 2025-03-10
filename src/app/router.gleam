@@ -12,28 +12,29 @@ import gleam/http.{Get}
 import gleam/http/request.{type Request}
 import gleam/http/response.{type Response}
 import gleam/http/service.{type Service}
-import gleam/option.{None}
 import gleam/string
 import mist.{type Connection, type ResponseData}
-import mist_sprocket.{view}
+import sprocket/component.{component}
+import sprocket_mist.{view}
 
 pub fn router(app: AppContext) {
   fn(request: Request(Connection)) -> Response(ResponseData) {
     use <- rescue_crashes()
 
     case request.method, request.path_segments(request) {
-      Get, _ ->
+      Get, _ -> {
+        let el = component(page, PageProps(app, path: request.path))
+
         view(
           request,
           page_layout(
             "Welcome to Sprocket!",
             csrf.generate(app.secret_key_base),
           ),
-          page,
-          fn(_) { PageProps(app, path: request.path) },
+          el,
           app.validate_csrf,
-          None,
         )
+      }
 
       _, _ ->
         not_found()

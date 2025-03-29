@@ -26,7 +26,8 @@ gleam_http = "~> 3.6"
 mist = "~> 4.0.0"
 #sprocket = "~> 1.0.0"
 sprocket = { git = "https://github.com/bitbldr/sprocket.git", ref = "v2-dev" }
-sprocket_mist = "~> 1.0.0"
+#sprocket_mist = "~> 1.0.0"
+sprocket_mist = { git = "https://github.com/bitbldr/sprocket_mist.git", ref = "v2-dev" }
 gleam_erlang = ">= 0.32.0 and < 1.0.0"
 gleam_json = ">= 2.1.0 and < 3.0.0"
 gleam_crypto = "~> 1.3"

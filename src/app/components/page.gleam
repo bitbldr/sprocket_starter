@@ -4,7 +4,7 @@ import app/components/counter.{CounterProps, counter}
 import app/components/hello_button.{HelloButtonProps, hello_button}
 import gleam/erlang
 import gleam/option.{Some}
-import sprocket/component.{type Context, component, render}
+import sprocket.{type Context, component, render}
 import sprocket/html/attributes.{class, href, id}
 
 import sprocket/html/elements.{a, div, h1, p, p_text, span, text}

@@ -2,7 +2,7 @@ import app/hooks/double_click.{double_click}
 import gleam/erlang/process
 import gleam/int
 import gleam/option.{type Option, None, Some}
-import sprocket/component.{type Context, component, render}
+import sprocket.{type Context, component, render}
 import sprocket/hooks.{type Dispatcher, reducer}
 import sprocket/html/attributes.{class, classes}
 import sprocket/html/elements.{button_text, div, span, text}

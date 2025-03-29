@@ -1,5 +1,5 @@
 import gleam/option.{Some}
-import sprocket/component.{type Context}
+import sprocket.{type Context}
 import sprocket/hooks.{client}
 
 // Custom hook for handling client double click events

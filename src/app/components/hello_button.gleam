@@ -2,7 +2,7 @@ import app/utils/list.{element_at} as _
 import gleam/int
 import gleam/list
 import gleam/option.{type Option, None, Some}
-import sprocket/component.{type Context, render}
+import sprocket.{type Context, render}
 import sprocket/hooks.{type Dispatcher, reducer}
 import sprocket/html/attributes.{class}
 import sprocket/html/elements.{button, div, span, text}

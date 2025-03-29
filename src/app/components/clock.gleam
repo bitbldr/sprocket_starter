@@ -2,7 +2,7 @@ import gleam/erlang
 import gleam/int
 import gleam/io
 import gleam/option.{type Option, None, Some}
-import sprocket/component.{type Context, render}
+import sprocket.{type Context, render}
 import sprocket/hooks.{dep, effect, state}
 import sprocket/html/elements.{fragment, span, text}
 import sprocket/internal/utils/timer.{interval}

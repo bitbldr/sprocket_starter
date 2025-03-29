@@ -1,8 +1,9 @@
 import app/hooks/double_click.{double_click}
+import gleam/erlang/process
 import gleam/int
 import gleam/option.{type Option, None, Some}
 import sprocket/component.{type Context, component, render}
-import sprocket/hooks.{reducer}
+import sprocket/hooks.{type Dispatcher, reducer}
 import sprocket/html/attributes.{class, classes}
 import sprocket/html/elements.{button_text, div, span, text}
 import sprocket/html/events
@@ -11,20 +12,48 @@ type Model =
   Int
 
 type Msg {
-  UpdateCounter(Int)
+  SetCount(Int)
+  IncrementCount
+  ScheduleTick
   ResetCounter
 }
 
 fn init(count: Int) {
-  #(count, [])
+  fn(dispatch) {
+    schedule_tick(dispatch)
+
+    dispatch(SetCount(20))
+
+    count
+  }
 }
 
-fn update(_model: Model, msg: Msg) {
+fn schedule_tick(dispatch) {
+  process.start(
+    fn() {
+      process.sleep(1000)
+      dispatch(IncrementCount)
+
+      dispatch(ScheduleTick)
+    },
+    False,
+  )
+}
+
+fn update(model: Model, msg: Msg, dispatch: Dispatcher(Msg)) {
   case msg {
-    UpdateCounter(count) -> {
-      #(count, [])
+    SetCount(count) -> {
+      count
     }
-    ResetCounter -> #(0, [])
+    IncrementCount -> {
+      model + 1
+    }
+    ScheduleTick -> {
+      schedule_tick(dispatch)
+
+      model
+    }
+    ResetCounter -> 0
   }
 }
 
@@ -48,7 +77,7 @@ pub fn counter(ctx: Context, props: CounterProps) {
       component(
         button,
         StyledButtonProps(class: "rounded-l", label: "-", on_click: fn() {
-          dispatch(UpdateCounter(count - 1))
+          dispatch(SetCount(count - 1))
         }),
       ),
       component(
@@ -66,7 +95,7 @@ pub fn counter(ctx: Context, props: CounterProps) {
       component(
         button,
         StyledButtonProps(class: "rounded-r", label: "+", on_click: fn() {
-          dispatch(UpdateCounter(count + 1))
+          dispatch(SetCount(count + 1))
         }),
       ),
     ]),

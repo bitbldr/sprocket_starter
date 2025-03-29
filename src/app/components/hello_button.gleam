@@ -3,7 +3,7 @@ import gleam/int
 import gleam/list
 import gleam/option.{type Option, None, Some}
 import sprocket/component.{type Context, render}
-import sprocket/hooks.{reducer}
+import sprocket/hooks.{type Dispatcher, reducer}
 import sprocket/html/attributes.{class}
 import sprocket/html/elements.{button, div, span, text}
 import sprocket/html/events
@@ -17,18 +17,16 @@ type Msg {
   SayHello
 }
 
-fn update(model: Model, msg: Msg) {
+fn update(model: Model, msg: Msg, _dispatch: Dispatcher(Msg)) {
   case msg {
-    NoOp -> #(model, [])
-    SayHello -> #(
-      Model(..model, selection: Some(int.random(list.length(model.options)))),
-      [],
-    )
+    NoOp -> model
+    SayHello ->
+      Model(..model, selection: Some(int.random(list.length(model.options))))
   }
 }
 
 fn init(options: List(HelloOption)) {
-  #(Model(selection: None, options: options), [])
+  fn(_dispatch) { Model(selection: None, options: options) }
 }
 
 pub type HelloButtonProps {

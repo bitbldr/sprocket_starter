@@ -1,5 +1,4 @@
 import app/hooks/double_click.{double_click}
-import gleam/erlang/process
 import gleam/int
 import gleam/option.{type Option, None, Some}
 import sprocket.{type Context, component, render}
@@ -13,45 +12,17 @@ type Model =
 
 type Msg {
   SetCount(Int)
-  IncrementCount
-  ScheduleTick
   ResetCounter
 }
 
 fn init(count: Int) {
-  fn(dispatch) {
-    schedule_tick(dispatch)
-
-    dispatch(SetCount(20))
-
-    count
-  }
+  fn(_dispatch) { count }
 }
 
-fn schedule_tick(dispatch) {
-  process.start(
-    fn() {
-      process.sleep(1000)
-      dispatch(IncrementCount)
-
-      dispatch(ScheduleTick)
-    },
-    False,
-  )
-}
-
-fn update(model: Model, msg: Msg, dispatch: Dispatcher(Msg)) {
+fn update(_model: Model, msg: Msg, _dispatch: Dispatcher(Msg)) {
   case msg {
     SetCount(count) -> {
       count
-    }
-    IncrementCount -> {
-      model + 1
-    }
-    ScheduleTick -> {
-      schedule_tick(dispatch)
-
-      model
     }
     ResetCounter -> 0
   }

@@ -1,25 +1,21 @@
-import gleam/erlang
-import gleam/int
+import birl
 import gleam/io
 import gleam/option.{type Option, None, Some}
+import gleam/string
 import sprocket.{type Context, render}
-import sprocket/hooks.{dep, effect, state}
+import sprocket/hooks.{effect, state}
 import sprocket/html/elements.{fragment, span, text}
 import sprocket/internal/utils/timer.{interval}
 
 pub type ClockProps {
-  ClockProps(label: Option(String), time_unit: Option(erlang.TimeUnit))
+  ClockProps(label: Option(String))
 }
 
 pub fn clock(ctx: Context, props: ClockProps) {
-  let ClockProps(label, time_unit) = props
-
-  let time_unit =
-    time_unit
-    |> option.unwrap(erlang.Second)
+  let ClockProps(label) = props
 
   // Define a reducer to handle events and update the state
-  use ctx, time, set_time <- state(ctx, erlang.system_time(time_unit))
+  use ctx, time, set_time <- state(ctx, birl.now())
 
   // Example effect with an empty list of dependencies, runs once on mount
   use ctx <- effect(
@@ -35,22 +31,16 @@ pub fn clock(ctx: Context, props: ClockProps) {
   use ctx <- effect(
     ctx,
     fn() {
-      let interval_duration = case time_unit {
-        erlang.Millisecond -> 1
-        _ -> 1000
-      }
+      let interval_duration = 1000
 
-      let cancel =
-        interval(interval_duration, fn() {
-          set_time(erlang.system_time(time_unit))
-        })
+      let cancel = interval(interval_duration, fn() { set_time(birl.now()) })
 
       Some(fn() { cancel() })
     },
-    [dep(time_unit)],
+    [],
   )
 
-  let current_time = int.to_string(time)
+  let current_time = birl.to_naive_time_string(time) |> string.drop_end(4)
 
   render(
     ctx,

@@ -2,7 +2,6 @@ import app/app_context.{type AppContext}
 import app/components/clock.{ClockProps, clock}
 import app/components/counter.{CounterProps, counter}
 import app/components/hello_button.{HelloButtonProps, hello_button}
-import gleam/erlang
 import gleam/option.{Some}
 import sprocket.{type Context, component, render}
 import sprocket/html/attributes.{class, href, id}
@@ -32,7 +31,7 @@ pub fn page(ctx: Context, _props: PageProps) {
           ]),
         ]),
         div([class("text-gray-500 text-sm")], [
-          text("Real-time server component framework for Gleam ✨"),
+          text("A library for building server components in Gleam ✨"),
         ]),
       ]),
       p([class("my-5 text-center")], [
@@ -62,10 +61,7 @@ pub fn page(ctx: Context, _props: PageProps) {
       div([class("my-5 text-center")], [
         component(
           clock,
-          ClockProps(
-            label: Some("The current system time is: "),
-            time_unit: Some(erlang.Second),
-          ),
+          ClockProps(label: Some("The current system time is: ")),
         ),
       ]),
       div([class("grid grid-cols-2 gap-8 justify-items-end")], [

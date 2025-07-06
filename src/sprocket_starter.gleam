@@ -17,15 +17,17 @@ pub fn main() {
   let assert Ok(_) =
     router.stack(AppContext(secret_key_base, csrf.validate(_, secret_key_base)))
     |> mist.new
+    |> mist.bind("localhost")
+    |> mist.with_ipv6
     |> mist.port(port)
-    |> mist.start_http
+    |> mist.start
 
   process.sleep_forever()
 }
 
 fn load_port() -> Int {
   envoy.get("PORT")
-  |> result.then(int.parse)
+  |> result.try(int.parse)
   |> result.unwrap(3000)
 }
 
